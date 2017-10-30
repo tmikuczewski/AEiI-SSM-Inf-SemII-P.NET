@@ -1,1 +1,1 @@
-# AEiI-SSM-Inf-SemII-P.NET
+# AEiI SSM Inf SemII P.NET [![Build Status](https://travis-ci.org/tmikuczewski/AEiI-SSM-Inf-SemII-P.NET.svg?branch=master)](https://travis-ci.org/tmikuczewski/AEiI-SSM-Inf-SemII-P.NET)
