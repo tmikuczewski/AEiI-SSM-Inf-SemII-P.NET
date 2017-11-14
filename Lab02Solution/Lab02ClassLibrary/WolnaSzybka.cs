@@ -5,49 +5,34 @@ using System.Threading.Tasks;
 namespace Lab02ClassLibrary
 {
 	/// <summary>
-	///		Klasa posiadająca dwie metody działające w nieskończoność.
+	///		Klasa posiadająca dwie metody drukujące.
 	/// </summary>
 	public static class WolnaSzybka
 	{
 		/// <summary>
-		///		Metoda drukująca na ekran co dwie sekundy.
+		///		Metoda 'pracująca dwie sekundy' i drukująca na ekran.
 		/// </summary>
 		public static void WolnaMetoda()
 		{
-			while (true)
-			{
-				Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(WolnaMetoda)}");
-				Thread.Sleep(2000);
-			}
-			
-			// ReSharper disable once FunctionNeverReturns
+			Thread.Sleep(2000);
+			Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(WolnaMetoda)}");
 		}
 
 		/// <summary>
-		///		Metoda asynchroniczna drukująca na ekran co dwie sekundy.
+		///		Metoda asynchroniczna 'pracująca dwie sekundy' i drukująca na ekran.
 		/// </summary>
 		public static async void WolnaMetodaAsync()
 		{
-			while (true)
-			{
-				Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(WolnaMetodaAsync)}");
-				await Task.Delay(2000);
-			}
-			
-			// ReSharper disable once FunctionNeverReturns
+			await Task.Delay(2000);
+			Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(WolnaMetodaAsync)}");
 		}
 
 		/// <summary>
-		///		Metoda drukująca.
+		///		Metoda drukująca na ekran.
 		/// </summary>
 		public static void SzybkaMetoda()
 		{
-			while (true)
-			{
-				Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(SzybkaMetoda)}");
-			}
-			
-			// ReSharper disable once FunctionNeverReturns
+			Console.WriteLine($"[ThreadId: {Thread.CurrentThread.ManagedThreadId}] {nameof(SzybkaMetoda)}");
 		}
 	}
 }

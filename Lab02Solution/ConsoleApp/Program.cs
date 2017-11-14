@@ -34,21 +34,22 @@ namespace ConsoleApp
 
 			//Console.WriteLine($"Aktualny wątek: {Thread.CurrentThread.ManagedThreadId}");
 
-			//// 'SzybkaMetoda' nigdy się nie wykona, ponieważ 'WolnaMetoda' wstrzymuje cały 
-			//// wątek swoim działaniem.
+			//// 'SzybkaMetoda' nie wykona się do momentu aż 'WolnaMetoda' nie zakończy działania.
 			//WolnaSzybka.WolnaMetoda();
 			//WolnaSzybka.SzybkaMetoda();
 
-			//// Obie metody mogą wykonywać się niezależnie, ponieważ 'WolnaMetoda'
-			//// została przez system uruchomiona w osobnym wątku ('StartNew' in 'TaskFactory').
+			//// 'WolnaMetoda' została uruchomiona w osobnym wątku, dlatego 'SzybkaMetoda' nie musiała
+			//// na nią czekać i wykonała się pierwsza.
 			//Task.Factory.StartNew(WolnaSzybka.WolnaMetoda);
 			//WolnaSzybka.SzybkaMetoda();
 
-			//// Obie metody mogą wykonywać się niezależnie, ponieważ 'WolnaMetoda' została uruchomiona
-			//// asynchronicznie i zawiera w sobie kod wywoływany asynchronicznie ('Task.Delay').
+			//// Tak jak w poprzednim przykładzie obie metody wykonywane są osobnych wątkach,
+			//// lecz operacja drukowania czeka na wykonanie obu metod.
 			//WolnaSzybka.WolnaMetodaAsync();
 			//WolnaSzybka.SzybkaMetoda();
 
+			Thread.Sleep(5000);
+			
 			// --- /zad02 ---
 		}
 	}
