@@ -1,23 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleApp.Models;
 
+#region ReSharper
+
+// ReSharper disable UnusedMember.Local
+// ReSharper disable SuggestVarOrType_Elsewhere
 // ReSharper disable SimilarAnonymousTypeNearby
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 // ReSharper disable InconsistentNaming
+
+#endregion
+
 namespace ConsoleApp
 {
 	internal class Program
 	{
 		private static void Main()
 		{
-			ZadaniaStatyczne();
+			Zadania();
 			Zadanie09();
 			Zadanie10();
+			Zadanie11();
+			Zadanie12();
+			Zadanie13();
+			Zadanie14();
+			Zadanie15();
+			Zadanie16();
+			Zadanie17();
+			Zadanie18();
 		}
 
-		private static void ZadaniaStatyczne()
+		private static void Zadania()
 		{
 			int[] zad_1_2 = {1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14};
 			Console.WriteLine(" Zad 1,2. Wartości podzielne przez 2:\n\t" +
@@ -63,17 +79,104 @@ namespace ConsoleApp
 			              "  Podaj dwa znaki (bez odzielającej spacji): ");
 			string poczatek = Console.ReadKey().KeyChar.ToString().ToUpper();
 			string koniec = Console.ReadKey().KeyChar.ToString().ToUpper();
-			Console.WriteLine(
-				$"\n\tout:\t{string.Join(", ", zad_9.Where(x => x.StartsWith(poczatek)).Where(x => x.EndsWith(koniec)))}");
+			Console.WriteLine($"\n\tout:\t{string.Join(", ", zad_9.Where(x => x.StartsWith(poczatek)).Where(x => x.EndsWith(koniec)))}");
 		}
 
 		private static void Zadanie10()
 		{
-			Console.Write(" Zad 10. Lista liczb całkowitych większa od podanej:\n\tin: ");
-			List<int> lista = Console.ReadLine().Split(" ").Select(int.Parse).ToList();
-			Console.Write("\tmin: ");
-			int min = int.Parse(Console.ReadLine());
-			Console.WriteLine($"\tout: {string.Join(", ", lista.FindAll(x => x > min))}");
+			Console.Write(" Zad 10. Lista liczb całkowitych większa od podanej:\n\t" +
+			              "  Podawaj liczby oddzielone przecinkiem i zatwierdź ENTER'em\n\t" +
+			              "in:\t");
+			List<int> lista = Console.ReadLine().Split(",").Select(int.Parse).ToList();
+			Console.Write("\t  Podaj liczbę (zatwierdź ENTER'em): ");
+			int.TryParse(Console.ReadLine(), out int min);
+			Console.WriteLine($"\tout:\t{string.Join(", ", lista.FindAll(x => x > min))}\n");
+		}
+
+		private static void Zadanie11()
+		{
+			int[] zad_11 = {5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2};
+			Console.Write(" Zad 11. Wyświetlanie 'n' ostatnich wartości z listy:\n\t" +
+			              $"in:\t{string.Join(", ", zad_11)}\n\t" +
+			              "  Podaj 'n' (zatwierdź ENTER'em): ");
+			int.TryParse(Console.ReadLine(), out int n);
+			Console.WriteLine($"\tout:\t{string.Join(", ", zad_11.TakeLast(n))}\n");
+		}
+
+		private static void Zadanie12()
+		{
+			int[] zad_12 = {5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2};
+			Console.Write(" Zad 12. Wyświetlanie 'n' największych wartości z listy:\n\t" +
+			              $"in:\t{string.Join(", ", zad_12)}\n\t" +
+			              "  Podaj 'n' (zatwierdź ENTER'em): ");
+			int.TryParse(Console.ReadLine(), out int n);
+			Console.WriteLine($"\tout:\t{string.Join(", ", zad_12.OrderBy(x => x).TakeLast(n))}\n");
+		}
+
+		private static void Zadanie13()
+		{
+			var zad_13 = "Lorem ipsum DOLOR sit amet, conSECtetur adipiscing ELIT. Aenean at nisl SIT amet diam laoreet.";
+			Console.WriteLine(" Zad 13. Wykrywanie słów pisanych wielkimi literami w łańcuchu znakowym:\n\t" +
+			              $"in:\t{zad_13}\n\t" +
+			              $"out:\t{string.Join(", ", string.Join(string.Empty, zad_13.Where(x => char.IsLetterOrDigit(x) || char.IsWhiteSpace(x))).Split(" ").Where(x => x.All(char.IsUpper)))}");
+		}
+
+		private static void Zadanie14()
+		{
+			string[] zad_14 = {"one", "two", "three", "four", "five"};
+			Console.WriteLine(" Zad 14. Konwersja tablicy typu string na string:\n\t" +
+			              $"in:\t{string.Join(", ", zad_14)}\n\t" +
+			              $"out:\t{string.Join(string.Empty, zad_14)}");
+		}
+
+		private static void Zadanie15()
+		{
+			string StudentToString(Students std) => $"(id:{std.StudentId:D2}, name: \"{std.StudentName}\", points:{std.GroupPoint})";
+
+			List<Students> students = new Students().GtStuRec();
+			Console.Write(" Zad 15. Znajdowanie 'n' studentów, którzy uzyskali najwyższy wynik:\n\t" +
+			              $"in:\t{string.Join("\n\t\t", students.Select(StudentToString))}\n\t" +
+			              "  Podaj 'n' (zatwierdź ENTER'em): ");
+			int.TryParse(Console.ReadLine(), out int n);
+			Console.WriteLine($"\tout:\t{string.Join("\n\t\t", students.OrderBy(x => x.GroupPoint).TakeLast(n).Select(StudentToString))}");
+		}
+
+		private static void Zadanie16()
+		{
+			string[] zad_16 = {"a.erc", "b.txt", "c.ldd", "d.pdf", "e.PDF", "a.pdf", "b.xml", "z.txt", "zzz.doc"};
+			Console.WriteLine(" Zad 14. Konwersja tablicy typu string na string:\n\t" +
+			              $"in:\t{string.Join(", ", zad_16)}\n\t" +
+			              $"out:\t{string.Join("\n\t\t", zad_16.Select(x => x.ToUpper()).GroupBy(x => x.Substring(x.IndexOf('.'))).Select(x => $"{x.Key.ToLower()} (ilość: {x.Count()})"))}");
+		}
+
+		private static void Zadanie17()
+		{
+			var zad_17 = new List<int> {5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2};
+			Console.Write(" Zad 17. Usuwanie danych z listy na podstawie podanych wartości:\n\t" +
+			              $"in:\t{string.Join(", ", zad_17)}\n\t" +
+			              "  Wpisywane wartości zatwierdź ENTER'em; Zakończ wprowadzanie pustym wpisem\n");
+			while (true)
+			{
+				Console.Write($"\tout:\t{string.Join(", ", zad_17)}" +
+				              "\n\t  wartość: ");
+				bool parsed = int.TryParse(Console.ReadLine(), out int n);
+				if (!parsed)
+				{
+					break;
+				}
+				zad_17.RemoveAll(x => x == n);
+			}
+			Console.WriteLine();
+		}
+
+		private static void Zadanie18()
+		{
+			char[] zad_18_1 = {'A', 'B', 'C', 'D'};
+			int[] zad_18_2 = {1, 2, 3, 4};
+
+			Console.WriteLine(" Zad 18. Generacja iloczynu kartezjańskiego dwóch zbiorów:\n\t" +
+			              $"in:\t{string.Join(", ", zad_18_1)}\n\t\t{string.Join(", ", zad_18_2)}\n\t" +
+			              $"out:\t{string.Join(", ", zad_18_1.SelectMany(x => zad_18_2, (x, y) => new {x, y}).Select(x => $"{x.x}{x.y}"))}");
 		}
 	}
 }
