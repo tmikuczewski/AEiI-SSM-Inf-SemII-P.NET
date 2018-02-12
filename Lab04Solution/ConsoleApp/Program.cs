@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using ConsoleApp.Models;
 
 #region ReSharper
@@ -31,6 +32,9 @@ namespace ConsoleApp
 			Zadanie16();
 			Zadanie17();
 			Zadanie18();
+			Zadanie19();
+			Zadanie19Dwa();
+			Zadanie20();
 		}
 
 		private static void Zadania()
@@ -176,7 +180,37 @@ namespace ConsoleApp
 
 			Console.WriteLine(" Zad 18. Generacja iloczynu kartezjańskiego dwóch zbiorów:\n\t" +
 			              $"in:\t{string.Join(", ", zad_18_1)}\n\t\t{string.Join(", ", zad_18_2)}\n\t" +
-			              $"out:\t{string.Join(", ", zad_18_1.SelectMany(x => zad_18_2, (x, y) => new {x, y}).Select(x => $"{x.x}{x.y}"))}");
+			              $"out:\t{string.Join(", ", zad_18_1.SelectMany(x => zad_18_2, (x, y) => new {x, y}).Select(x => $"{x.x}{x.y}"))}\n");
+		}
+
+		private static void Zadanie19()
+		{
+			List<ItemMast> itemMasts = ItemMast.GetList();
+			List<Purchase> purchases = Purchase.GetList();
+
+			Console.WriteLine(" Zad 19. Generacja złączenia typu INNER JOIN pomiędzy dwoma listami:\n\t" +
+			                  $"in:\t{string.Join("\n\t\t", itemMasts)}\n\t\t{string.Join("\n\t\t", purchases)}\n\t" +
+			                  $"out:\t{string.Join("\n\t\t", itemMasts.Join(purchases, x => x.Id, y => y.Id, (x, y) => $"{x} | {y}"))}\n");
+		}
+
+		private static void Zadanie19Dwa()
+		{
+			List<ItemMast> itemMasts = ItemMast.GetList();
+			List<Purchase> purchases = Purchase.GetList();
+
+			Console.WriteLine(" Zad 19dwa. Generacja złączenia typu LEFT JOIN pomiędzy dwoma listami:\n\t" +
+			                  $"in:\t{string.Join("\n\t\t", itemMasts)}\n\t\t{string.Join("\n\t\t", purchases)}\n\t" +
+			                  $"out:\t{string.Join("\n\t\t", itemMasts.GroupJoin(purchases, x => x.Id, y => y.Id, (x, y) => new { x, y }).SelectMany(z => z.y, (a, b) => $"{a.x} | {b}"))}\n");
+		}
+
+		private static void Zadanie20()
+		{
+			List<ItemMast> itemMasts = ItemMast.GetList();
+			List<Purchase> purchases = Purchase.GetList();
+
+			Console.WriteLine(" Zad 20. Generacja złączenia typu RIGHT JOIN pomiędzy dwoma listami:\n\t" +
+			                  $"in:\t{string.Join("\n\t\t", itemMasts)}\n\t\t{string.Join("\n\t\t", purchases)}\n\t" +
+			                  $"out:\t{string.Join("\n\t\t", purchases.GroupJoin(itemMasts, x => x.Id, y => y.Id, (x, y) => new { x, y }).SelectMany(z => z.y, (a, b) => $"{a.x} | {b}"))}\n");
 		}
 	}
 }
