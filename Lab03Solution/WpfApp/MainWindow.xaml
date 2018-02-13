@@ -6,7 +6,7 @@
         xmlns:properties="clr-namespace:WpfApp.Properties"
         mc:Ignorable="d"
         Title="{x:Static properties:Resources.MainWindowTitle}" Height="350" Width="525"
-        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600" Background="White" Foreground="{x:Null}">
+        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600" Background="White">
 	<Grid x:Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="5*" />

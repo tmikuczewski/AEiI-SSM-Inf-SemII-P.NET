@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>O nas</value>
   </data>
+  <data name="AboutWindowTitle" xml:space="preserve">
+    <value>O nas</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor: Tomasz Mikuczewski</value>
+  </data>
   <data name="CloseConfirmation" xml:space="preserve">
     <value>Czy chciałbyś zamknąć aplikację?</value>
   </data>

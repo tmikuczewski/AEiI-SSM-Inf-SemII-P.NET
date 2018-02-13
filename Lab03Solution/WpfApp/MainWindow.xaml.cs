@@ -10,6 +10,8 @@ namespace WpfApp
 {
 	public partial class MainWindow
 	{
+		private AboutWindow _aboutWindow;
+
 		static MainWindow()
 		{
 			CultureInfo currentCulture = CultureInfo.CurrentCulture;
@@ -26,6 +28,7 @@ namespace WpfApp
 		{
 			if (MessageBox.Show(Res.CloseConfirmation, Res.Exit, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 			{
+				this._aboutWindow?.Close();
 				base.OnClosing(e);
 			}
 			else
@@ -40,6 +43,10 @@ namespace WpfApp
 			{
 				case "Exit":
 					Close();
+					break;
+				case "About":
+					this._aboutWindow = new AboutWindow();
+					this._aboutWindow.Show();
 					break;
 				default:
 					return;

@@ -70,6 +70,24 @@ namespace WpfApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutWindowTitle {
+            get {
+                return ResourceManager.GetString("AboutWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author: Tomasz Mikuczewski.
+        /// </summary>
+        public static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to close application?.
         /// </summary>
         public static string CloseConfirmation {
