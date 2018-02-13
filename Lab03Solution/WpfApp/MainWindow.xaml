@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="{x:Static properties:Resources.MainWindowTitle}" Height="350" Width="525"
         WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600" Background="White">
+	<Window.CommandBindings>
+		<CommandBinding Command="New" Executed="NewCommandBinding_Executed"></CommandBinding>
+		<CommandBinding Command="Open" Executed="OpenCommandBinding_Executed"></CommandBinding>
+		<CommandBinding Command="Save" Executed="SaveCommandBinding_Executed"></CommandBinding>
+		<CommandBinding Command="Help" Executed="HelpCommandBinding_Executed"></CommandBinding>
+	</Window.CommandBindings>
+	<Window.InputBindings>
+		<KeyBinding Key="N" Modifiers="Control" Command="New"></KeyBinding>
+		<KeyBinding Key="O" Modifiers="Control" Command="Open"></KeyBinding>
+		<KeyBinding Key="S" Modifiers="Control" Command="Save"></KeyBinding>
+		<KeyBinding Key="H" Modifiers="Control" Command="Help"></KeyBinding>
+	</Window.InputBindings>
 	<Grid x:Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="5*" />
@@ -21,16 +33,16 @@
 		</Grid.ColumnDefinitions>
 		<Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" DockPanel.Dock="Top" MenuItem.Click="MenuItem_Click" Background="White">
 			<MenuItem Header="{x:Static properties:Resources.File}">
-				<MenuItem Header="{x:Static properties:Resources.New}" Name="New" />
-				<MenuItem Header="{x:Static properties:Resources.Load}" Name="Load" />
-				<MenuItem Header="{x:Static properties:Resources.Save}" Name="Save" />
-				<MenuItem Header="{x:Static properties:Resources.Exit}" Name="Exit" />
+				<MenuItem Header="{x:Static properties:Resources.New}" Name="New" InputGestureText="Ctrl+N" Command="New" />
+				<MenuItem Header="{x:Static properties:Resources.Load}" Name="Load" InputGestureText="Ctrl+O" Command="Open" />
+				<MenuItem Header="{x:Static properties:Resources.Save}" Name="Save" InputGestureText="Ctrl+S" Command="Save" />
+				<MenuItem Header="{x:Static properties:Resources.Exit}" Name="Exit" InputGestureText="Alt+F4" />
 			</MenuItem>
 			<MenuItem Header="{x:Static properties:Resources.Help}">
-				<MenuItem Header="{x:Static properties:Resources.About}" Name="About" />
+				<MenuItem Header="{x:Static properties:Resources.About}" Name="About" InputGestureText="Ctrl+H" Command="Help" />
 			</MenuItem>
 		</Menu>
-		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="57" VerticalAlignment="Top" Margin="5,0">
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="57" VerticalAlignment="Top" Margin="5,0" d:IsLocked="True">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="10*" />
 				<ColumnDefinition Width="9*" />
@@ -42,7 +54,7 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.NoOfElements}" />
-				<TextBox Grid.Column="1" Margin="0,10" Width="114" HorizontalAlignment="Left" FontSize="14" />
+				<TextBox x:Name="NoOfEltsTextBox" Grid.Column="1" Margin="0,10" Width="114" HorizontalAlignment="Left" FontSize="14" MaxLines="1" />
 			</Grid>
 			<Grid Grid.Column="1">
 				<Grid.ColumnDefinitions>
@@ -50,7 +62,7 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.RangeFrom}" />
-				<TextBox Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" />
+				<TextBox x:Name="RangeFromTextBox" Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" MaxLines="1" />
 			</Grid>
 			<Grid Grid.Column="2">
 				<Grid.ColumnDefinitions>
@@ -58,15 +70,16 @@
 					<ColumnDefinition Width="4*" />
 				</Grid.ColumnDefinitions>
 				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.RangeTo}" />
-				<TextBox Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" />
+				<TextBox x:Name="RangeToTextBox" Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" MaxLines="1" />
 			</Grid>
 		</Grid>
 		<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" >
-			<TextBlock FontSize="14" />
+			<ListBox x:Name="ListBox" FontSize="14" />
 		</Border>
-		<ProgressBar Grid.Row="3" Grid.Column="0" Margin="15,0,15,15" Value="33" Height="55" VerticalAlignment="Bottom" />
-		<Button Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" Height="55" VerticalAlignment="Bottom" FontSize="14" Content="{x:Static properties:Resources.Start}" />
-		<StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="46" VerticalAlignment="Bottom">
+
+		<ProgressBar x:Name="ProgressBar" Grid.Row="3" Grid.Column="0" Margin="15,0,15,15" Height="55" VerticalAlignment="Bottom" d:IsLocked="True" />
+		<Button x:Name="StartButton" Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" Height="55" VerticalAlignment="Bottom" FontSize="14" Content="{x:Static properties:Resources.Start}" Click="Button_Click" d:IsLocked="True" />
+		<StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="46" VerticalAlignment="Bottom" d:IsLocked="True">
 			<StatusBarItem Margin="10,0,0,0" Name="StatusBarItem" Content="{x:Static properties:Resources.Ready}" />
 		</StatusBar>
 	</Grid>

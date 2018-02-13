@@ -129,6 +129,12 @@
   <data name="CloseConfirmation" xml:space="preserve">
     <value>Do you want to close application?</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Errors: {0}</value>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
@@ -148,13 +154,13 @@
     <value>New</value>
   </data>
   <data name="NoOfElements" xml:space="preserve">
-    <value>Number of elements:</value>
+    <value>Number of elements</value>
   </data>
   <data name="RangeFrom" xml:space="preserve">
-    <value>Range from:</value>
+    <value>Range from</value>
   </data>
   <data name="RangeTo" xml:space="preserve">
-    <value>Range to:</value>
+    <value>Range to</value>
   </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready</value>
@@ -164,5 +170,8 @@
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="Working" xml:space="preserve">
+    <value>Working...</value>
   </data>
 </root>

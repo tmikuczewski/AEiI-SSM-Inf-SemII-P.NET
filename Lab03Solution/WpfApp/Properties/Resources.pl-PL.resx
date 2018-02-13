@@ -129,6 +129,12 @@
   <data name="CloseConfirmation" xml:space="preserve">
     <value>Czy chciałbyś zamknąć aplikację?</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Błędy: {0}</value>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Wyjście</value>
   </data>
@@ -148,21 +154,24 @@
     <value>Nowy</value>
   </data>
   <data name="NoOfElements" xml:space="preserve">
-    <value>Ilość elementów:</value>
+    <value>Ilość elementów</value>
   </data>
   <data name="RangeFrom" xml:space="preserve">
-    <value>Początek przedziału:</value>
+    <value>Początek przedziału</value>
   </data>
   <data name="RangeTo" xml:space="preserve">
-    <value>Koniec przedziału:</value>
+    <value>Koniec przedziału</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Gotowość</value>
+    <value>Gotowy</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="Working" xml:space="preserve">
+    <value>Pracuje...</value>
   </data>
 </root>
