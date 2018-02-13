@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:WpfApp.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static properties:Resources.MainWindowTitle}" Height="350" Width="525"
+        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600" Background="White" Foreground="{x:Null}">
+	<Grid x:Name="MainGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="5*" />
+			<RowDefinition Height="10*" />
+			<RowDefinition Height="62*" />
+			<RowDefinition Height="15*" />
+			<RowDefinition Height="8*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="3*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" DockPanel.Dock="Top" MenuItem.Click="MenuItem_Click" Background="White">
+			<MenuItem Header="{x:Static properties:Resources.File}">
+				<MenuItem Header="{x:Static properties:Resources.New}" Name="New" />
+				<MenuItem Header="{x:Static properties:Resources.Load}" Name="Load" />
+				<MenuItem Header="{x:Static properties:Resources.Save}" Name="Save" />
+				<MenuItem Header="{x:Static properties:Resources.Exit}" Name="Exit" />
+			</MenuItem>
+			<MenuItem Header="{x:Static properties:Resources.Help}">
+				<MenuItem Header="{x:Static properties:Resources.About}" Name="About" />
+			</MenuItem>
+		</Menu>
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="57" VerticalAlignment="Top" Margin="5,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="10*" />
+				<ColumnDefinition Width="9*" />
+				<ColumnDefinition Width="9*" />
+			</Grid.ColumnDefinitions>
+			<Grid Grid.Column="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="5*" />
+					<ColumnDefinition Width="4*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.NoOfElements}" />
+				<TextBox Grid.Column="1" Margin="0,10" Width="114" HorizontalAlignment="Left" FontSize="14" />
+			</Grid>
+			<Grid Grid.Column="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="5*" />
+					<ColumnDefinition Width="4*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.RangeFrom}" />
+				<TextBox Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" />
+			</Grid>
+			<Grid Grid.Column="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="5*" />
+					<ColumnDefinition Width="4*" />
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Content="{x:Static properties:Resources.RangeTo}" />
+				<TextBox Grid.Column="1" Margin="0,10" Width="102" HorizontalAlignment="Left" FontSize="14" />
+			</Grid>
+		</Grid>
+		<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" >
+			<TextBlock FontSize="14" />
+		</Border>
+		<ProgressBar Grid.Row="3" Grid.Column="0" Margin="15,0,15,15" Value="33" Height="55" VerticalAlignment="Bottom" />
+		<Button Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" Height="55" VerticalAlignment="Bottom" FontSize="14" Content="{x:Static properties:Resources.Start}" />
+		<StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="46" VerticalAlignment="Bottom">
+			<StatusBarItem Margin="10,0,0,0" Name="StatusBarItem" Content="{x:Static properties:Resources.Ready}" />
+		</StatusBar>
+	</Grid>
+</Window>

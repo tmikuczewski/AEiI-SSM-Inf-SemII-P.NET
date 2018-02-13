@@ -7,6 +7,7 @@ before_script:
 script:
   - ./build.sh ./Lab01Solution/Lab01Solution.sln
   - ./build.sh ./Lab02Solution/Lab02Solution.sln
+#  - ./build.sh ./Lab03Solution/Lab03Solution.sln # WPF
   - ./build.sh ./Lab04Solution/Lab04Solution.sln
 notifications:
   email: false
