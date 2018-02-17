@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+
+using DAL.Models;
 
 namespace DAL.Migrations
 {
@@ -11,18 +14,21 @@ namespace DAL.Migrations
 
 		protected override void Seed(Context context)
 		{
-			//  This method will be called after migrating to the latest version.
-
-			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-			//  to avoid creating duplicate seed data. E.g.
-			//
-			//    context.People.AddOrUpdate(
-			//      p => p.FullName,
-			//      new Person { FullName = "Andrew Peters" },
-			//      new Person { FullName = "Brice Lambson" },
-			//      new Person { FullName = "Rowan Miller" }
-			//    );
-			//
+			context.People.AddRange(new List<Person>
+			{
+				new Person
+				{
+					Username = "tmiku",
+					Password = "pass1",
+					Name = "TMIKUCZEWSKI"
+				},
+				new Person
+				{
+					Username = "awrob",
+					Password = "1pwd",
+					Name = "Gorrion"
+				}
+			});
 		}
 	}
 }

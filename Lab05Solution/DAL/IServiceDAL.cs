@@ -14,12 +14,15 @@ namespace DAL
 		List<Person> GetPeople();
 
 		[OperationContract]
-		void AddPerson(Person person);
+		Person Find(string username, string password);
 
 		[OperationContract]
-		void EditPerson(Person person);
+		bool AddPerson(Person person);
 
 		[OperationContract]
-		void RemovePerson(Guid id);
+		bool EditPerson(Person person);
+
+		[OperationContract]
+		bool RemovePerson(Guid id);
 	}
 }

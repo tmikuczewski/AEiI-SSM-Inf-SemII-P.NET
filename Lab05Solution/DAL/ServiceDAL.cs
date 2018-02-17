@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core;
 using System.Linq;
 
 using DAL.Models;
@@ -19,50 +18,89 @@ namespace DAL
 			}
 		}
 
-		public void AddPerson(Person person)
+		public Person Find(string username, string password)
 		{
 			using (var ctx = new Context())
 			{
-				if (ctx.People.Any(x => x.Login == person.Login))
+				return password != null
+					? ctx.People.FirstOrDefault(x => x.Username == username && x.Password == password)
+					: ctx.People.FirstOrDefault(x => x.Username == username);
+			}
+		}
+
+		public bool AddPerson(Person person)
+		{
+			using (var ctx = new Context())
+			{
+				if (ctx.People.Any(x => x.Username == person.Username))
 				{
-					throw new EntityException("Osoba o podanym Login'ie już istnieje.");
+					return false;
 				}
 				person.Id = Guid.Empty;
 
 				ctx.People.Add(person);
-				ctx.SaveChanges();
+				try
+				{
+					ctx.SaveChanges();
+				}
+				catch
+				{
+					return false;
+				}
+
+				return true;
 			}
 		}
 
-		public void EditPerson(Person person)
+		public bool EditPerson(Person person)
 		{
 			using (var ctx = new Context())
 			{
 				Person oldPerson = ctx.People.FirstOrDefault(x => x.Id == person.Id);
 				if (oldPerson == null)
 				{
-					throw new EntityException("Osoba o podanym Id nie istnieje.");
+					return false;
 				}
 
-				oldPerson.Login = person.Login;
+				oldPerson.Username = person.Username;
+				oldPerson.Password = person.Password;
 				oldPerson.Name = person.Name;
 				ctx.Entry(oldPerson).State = EntityState.Modified;
-				ctx.SaveChanges();
+
+				try
+				{
+					ctx.SaveChanges();
+				}
+				catch
+				{
+					return false;
+				}
+
+				return true;
 			}
 		}
 
-		public void RemovePerson(Guid id)
+		public bool RemovePerson(Guid id)
 		{
 			using (var ctx = new Context())
 			{
 				Person person = ctx.People.FirstOrDefault(x => x.Id == id);
 				if (person == null)
 				{
-					throw new EntityException("Osoba o podanym Id nie istnieje.");
+					return false;
 				}
 
 				ctx.People.Remove(person);
-				ctx.SaveChanges();
+				try
+				{
+					ctx.SaveChanges();
+				}
+				catch
+				{
+					return false;
+				}
+
+				return true;
 			}
 		}
 	}

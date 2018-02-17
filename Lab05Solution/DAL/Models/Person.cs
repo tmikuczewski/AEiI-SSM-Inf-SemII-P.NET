@@ -13,7 +13,7 @@ namespace DAL.Models
 		public Guid Id { get; set; }
 		[Required]
 		[DataMember]
-		public string Login { get; set; }
+		public string Username { get; set; }
 		[Required]
 		public string Password { get; set; }
 		[Required]

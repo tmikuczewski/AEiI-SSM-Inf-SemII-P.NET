@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceDAL" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:26436/ServiceDAL.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:26436/ServiceDAL.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:26436/ServiceDAL.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DAL.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceDAL_GetPeople_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeople" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_GetPeople_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_Find_InputMessage">
+    <wsdl:part name="parameters" element="tns:Find" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_Find_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_AddPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPerson" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_AddPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_EditPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditPerson" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_EditPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_RemovePerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePerson" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDAL_RemovePerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePersonResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceDAL">
+    <wsdl:operation name="GetPeople">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDAL/GetPeople" message="tns:IServiceDAL_GetPeople_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDAL/GetPeopleResponse" message="tns:IServiceDAL_GetPeople_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Find">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDAL/Find" message="tns:IServiceDAL_Find_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDAL/FindResponse" message="tns:IServiceDAL_Find_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDAL/AddPerson" message="tns:IServiceDAL_AddPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDAL/AddPersonResponse" message="tns:IServiceDAL_AddPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDAL/EditPerson" message="tns:IServiceDAL_EditPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDAL/EditPersonResponse" message="tns:IServiceDAL_EditPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDAL/RemovePerson" message="tns:IServiceDAL_RemovePerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDAL/RemovePersonResponse" message="tns:IServiceDAL_RemovePerson_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceDAL" type="tns:IServiceDAL">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPeople">
+      <soap:operation soapAction="http://tempuri.org/IServiceDAL/GetPeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Find">
+      <soap:operation soapAction="http://tempuri.org/IServiceDAL/Find" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPerson">
+      <soap:operation soapAction="http://tempuri.org/IServiceDAL/AddPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <soap:operation soapAction="http://tempuri.org/IServiceDAL/EditPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePerson">
+      <soap:operation soapAction="http://tempuri.org/IServiceDAL/RemovePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceDAL">
+    <wsdl:port name="BasicHttpBinding_IServiceDAL" binding="tns:BasicHttpBinding_IServiceDAL">
+      <soap:address location="http://localhost:26436/ServiceDAL.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
